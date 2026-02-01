@@ -128,12 +128,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="IRTypes.cpp" />
+    <ClCompile Include="LangCoreAPI.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tokens.cpp" />
+    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="Tokens.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Helpers.hpp" />
     <ClInclude Include="LangCoreAPI.hpp" />
+    <ClInclude Include="Nodes.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

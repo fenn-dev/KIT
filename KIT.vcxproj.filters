@@ -27,13 +27,25 @@
     <ClCompile Include="IRTypes.cpp">
       <Filter>LangCoreAPI</Filter>
     </ClCompile>
-    <ClCompile Include="Tokens.cpp">
+    <ClCompile Include="Tokens.hpp">
+      <Filter>LangCoreAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="LangCoreAPI.cpp">
+      <Filter>LangCoreAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="Parser.cpp">
       <Filter>LangCoreAPI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LangCoreAPI.hpp">
       <Filter>LangCoreAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Nodes.hpp">
+      <Filter>LangCoreAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

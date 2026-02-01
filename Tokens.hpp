@@ -1,5 +1,6 @@
-#include "LangCoreAPI.hpp"
-
+#pragma once
+#include <string_view>
+#include <map>
 #define TOKEN_LIST(T)                   \
     /* --INTEGERS-- */                  \
     T(I8, "i8")                         \
@@ -109,24 +110,90 @@
     T(AUTHOR, "author:")                \
     T(DESCRIPTION, "description:")      \
     T(LICENSE, "license:")              \
-    /* --MISCELLANEOUS-- */             \
-    T(IDENTIFIER, "identifier")         \
     /* --INCREMENT/DECREMENT-- */       \
     T(INC, "++")                        \
     T(DEC, "--")                        \
     T(MULCREMENT, "**")                 \
-    T(DIVCREMENT, "//")
+    T(DIVCREMENT, "//")                 \
+    /* --MISCELLANEOUS-- */             \
+    T(IDENTIFIER, "identifier")         \
+    T(LET, "let")                       \
+    T(CONST, "const")                   \
+    T(UNKNOWN, "unknown")               
+    
 
 
 
-enum class Token {
+struct Token {
+    enum class Type {
 #define AS_ENUM(enum_name, str_name) enum_name,
-    TOKEN_LIST(AS_ENUM)
+        TOKEN_LIST(AS_ENUM)
 #undef AS_ENUM
+    };
+
+    Type type;
+    std::string_view lexeme;
+    size_t line;
+    size_t column;
 };
 
-inline std::map<std::string_view, Token> string_to_token = {
-#define AS_MAP(enum_name, str_name) { str_name, Token::enum_name },
+inline std::map<std::string_view, Token::Type> string_to_token = {
+#define AS_MAP(enum_name, str_name) { str_name, Token::Type::enum_name },
     TOKEN_LIST(AS_MAP)
 #undef AS_MAP
 };
+
+#define IntTokens \
+    Token::Type::I8, Token::Type::I16, Token::Type::I32, Token::Type::I64, Token::Type::INT
+
+#define IntCase \
+         Token::Type::I8: \
+    case Token::Type::I16: \
+    case Token::Type::I32: \
+    case Token::Type::I64: \
+    case Token::Type::INT
+
+#define UIntTokens \
+    Token::Type::U8, Token::Type::U16, Token::Type::U32, Token::Type::U64, Token::Type::UINT
+
+#define UIntCase \
+         Token::Type::U8: \
+    case Token::Type::U16: \
+    case Token::Type::U32: \
+    case Token::Type::U64: \
+    case Token::Type::UINT
+
+#define FloatTokens \
+    Token::Type::F32, Token::Type::F64, Token::Type::FLOAT, Token::Type::DOUBLE,
+
+#define FloatCase \
+         Token::Type::F32: \
+    case Token::Type::F64: \
+    case Token::Type::FLOAT: \
+    case Token::Type::DOUBLE
+
+#define WildTokens \
+    Token::Type::W8, Token::Type::W16, Token::Type::W32, Token::Type::W64, Token::Type::WILD
+
+#define WildCase \
+         Token::Type::W8: \
+    case Token::Type::W16: \
+    case Token::Type::W32: \
+    case Token::Type::W64: \
+    case Token::Type::WILD
+
+#define LiteralTokens \
+    Token::Type::LITERAL_INT, Token::Type::LITERAL_UINT, Token::Type::LITERAL_CHAR, Token::Type::LITERAL_STRING, Token::Type::LITERAL_FLOAT
+
+#define LiteralCases \
+         Token::Type::LITERAL_INT: \
+    case Token::Type::LITERAL_UINT: \
+    case Token::Type::LITERAL_CHAR: \
+    case Token::Type::LITERAL_STRING: \
+    case Token::Type::LITERAL_FLOAT
+
+#define TypeCases \
+    IntCase: \
+    case UIntCase: \
+    case FloatCase: \
+    case WildCase
