@@ -6,6 +6,8 @@
 void LangCoreAPI::exec_parser() {
 	Nodes::mainNode root;
 	Nodes::Nodeptr unfinishedNode;
+	Nodes::IdentifierNode* IdentifierNode;
+	auto targetIndentifier = nullptr;
 	for (auto& token : tokens) {
 		switch (token.type) {
 		case Token::Type::CONST:
@@ -76,6 +78,12 @@ void LangCoreAPI::exec_parser() {
 				unfinishedNode = nullptr;
 			}
 			break;
+		}
+
+		case Token::Type::MULTIPLY:
+		case Token::Type::DIVCREMENT:
+		{
+
 		}
 
 		}

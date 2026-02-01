@@ -30,6 +30,11 @@ namespace Nodes {
         bool isConst = false;
     };
 
+    struct IdentifierNode : public Node {
+        std::string name;
+        Nodes::VariableNode* declaration = nullptr;
+    };
+
     struct BinaryOpNode : public Node {
         Nodeptr left;
         Nodeptr right;
@@ -48,7 +53,6 @@ namespace Nodes {
     struct ScopeNode : public Node {
         std::vector<Nodeptr> statements;
 
-        // Explicit move logic for the vector of unique_ptrs
         ScopeNode() = default;
         ScopeNode(ScopeNode&&) noexcept = default;
         ScopeNode& operator=(ScopeNode&&) noexcept = default;
