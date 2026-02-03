@@ -6,6 +6,8 @@
 #include "Nodes.hpp"
 
 class LangCoreAPI {
+private:
+    struct symbol { std::string_view name; bool is_init; int use_count; };
 public:
     void exec_lexer(std::string_view source);
     void exec_parser();
@@ -18,6 +20,7 @@ public:
 
     inline std::vector<Token> retrieve_tokens() { return tokens; }
 	inline Nodes::mainNode* retrieve_ast() { return &ast; }
+    inline std::vector<symbol>* retrieve_symbol_table() { return &symbol_table; }
 private:
     // LEXER DATA
     size_t line = 0;
@@ -29,4 +32,6 @@ private:
     char advance(std::string_view source);
 	// PARSER DATA
 	Nodes::mainNode ast;
+    
+    std::vector<symbol> symbol_table = {};
 };

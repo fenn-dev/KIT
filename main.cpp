@@ -56,7 +56,12 @@ int main() {
 		std::cout << "Token: " << static_cast<int>(token.type) << ", Lexeme: " << token.lexeme << ", Line: " << token.line << ", Column: " << token.column << "\n";
 	}
 
-	langCore.exec_parser();
+    try {
+        langCore.exec_parser();
+    }
+    catch (const std::runtime_error& e) {
+        std::cerr << "Caught a runtime error in parser: " << e.what() << std::endl;
+    }
 
     auto& ast = *langCore.retrieve_ast();
     printAST(ast);

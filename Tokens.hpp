@@ -119,7 +119,8 @@
     T(IDENTIFIER, "identifier")         \
     T(LET, "let")                       \
     T(CONST, "const")                   \
-    T(UNKNOWN, "unknown")               
+    T(UNKNOWN, "unknown")               \
+    T(TNULL, "null")
     
 
 
