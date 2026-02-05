@@ -3,24 +3,19 @@
 #include <map>
 #include <vector>
 #include "Tokens.hpp"
-#include "Nodes.hpp"
+#include "Semantics.h"
 
 class LangCoreAPI {
 private:
-    struct symbol { std::string_view name; bool is_init; int use_count; };
+    struct symbol { std::string name; bool is_init; int use_count; };
 public:
     void exec_lexer(std::string_view source);
-    void exec_parser();
-    void exec_semantic_analyzer();
-    void exec_ir_generator();
-    void exec_ir_optimizer();
-    void exec_nasm_generator();
-    void exec_assembler();
-    void exec_linker();
+    void exec_semantic_parser();
+    void exec_semantic_optimizer();
+    void exec_VCL_emitter();
+    void exec_gcc();
 
     inline std::vector<Token> retrieve_tokens() { return tokens; }
-	inline Nodes::mainNode* retrieve_ast() { return &ast; }
-    inline std::vector<symbol>* retrieve_symbol_table() { return &symbol_table; }
 private:
     // LEXER DATA
     size_t line = 0;
@@ -30,8 +25,7 @@ private:
     void walk(std::string_view source);
     Token::Type lookup_type(std::string_view identifier);
     char advance(std::string_view source);
-	// PARSER DATA
-	Nodes::mainNode ast;
-    
-    std::vector<symbol> symbol_table = {};
+
+
+    std::vector<NodeValue> ast;
 };

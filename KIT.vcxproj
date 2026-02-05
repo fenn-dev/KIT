@@ -131,10 +131,11 @@
     <ClCompile Include="LangCoreAPI.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="SemanticParser.cpp" />
     <ClCompile Include="Tokens.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Semantics.h" />
     <ClInclude Include="Helpers.hpp" />
     <ClInclude Include="LangCoreAPI.hpp" />
     <ClInclude Include="Nodes.hpp" />

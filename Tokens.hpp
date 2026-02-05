@@ -120,7 +120,10 @@
     T(LET, "let")                       \
     T(CONST, "const")                   \
     T(UNKNOWN, "unknown")               \
-    T(TNULL, "null")
+    T(TNULL, "null")                    \
+    T(TYPE_KEYWORD, "type_keyword")     \
+    T(RETURN_VAL, "return_val")         \
+    T(NUMBER, "number")                 \
     
 
 
